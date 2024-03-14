@@ -23,6 +23,8 @@ type SecretScanningAlert = {
   html_url: string
   state: string
   secret_type: string
+  login: string
+  name: string
 }
 
 type RateLimitOptions = {
