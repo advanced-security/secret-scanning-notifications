@@ -12,7 +12,7 @@ export async function getSecretScanningAlertsForScope(
     return res
   } catch (error: unknown) {
     if (error instanceof Error) {
-      core.debug(`Error with fatching alerts from the API.: ${error}`)
+      core.debug(`Error with fetching alerts from the API.: ${error}`)
       core.setFailed(
         'Error: There was an error fetching the alerts from the API. Please check the logs.'
       )
