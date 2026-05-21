@@ -42,31 +42,28 @@ describe('inputs', () => {
     delete process.env.CLOSED_ALERTS_FILEPATH
   })
 
-  it('should throw an error if frequency is not a number', async () => {
+  it('should default frequency to 0 when no action input is provided', async () => {
     process.env.FREQUENCY = 'invalid-frequency'
 
-    await expect(inputs()).rejects.toThrowError(
-      "context.repo requires a GITHUB_REPOSITORY environment variable like 'owner/repo'"
-    )
+    const result = await inputs()
+    expect(result).toHaveProperty('frequency', 0)
 
     delete process.env.FREQUENCY
   })
 
-  it("should throw an error if scope is not 'repo' or 'org'", async () => {
+  it('should default scope to an empty string when no action input is provided', async () => {
     process.env.SCOPE = 'invalid-scope'
 
-    await expect(inputs()).rejects.toThrowError(
-      "context.repo requires a GITHUB_REPOSITORY environment variable like 'owner/repo'"
-    )
+    const result = await inputs()
+    expect(result).toHaveProperty('scope', '')
 
     delete process.env.SCOPE
   })
 
-  it('should throw an error if GITHUB_TOKEN is not set', async () => {
+  it('should default token to an empty string when no action input is provided', async () => {
     delete process.env.GITHUB_TOKEN
 
-    await expect(inputs()).rejects.toThrowError(
-      "context.repo requires a GITHUB_REPOSITORY environment variable like 'owner/repo'"
-    )
+    const result = await inputs()
+    expect(result).toHaveProperty('api_token', '')
   })
 })
