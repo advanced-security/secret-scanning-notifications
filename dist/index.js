@@ -81,11 +81,10 @@ exports.fetchSecretScanningAlerts = fetchSecretScanningAlerts;
 const core = __importStar(__nccwpck_require__(7484));
 const myoctokit_1 = __nccwpck_require__(3832);
 async function fetchSecretScanningAlerts(input) {
-    let res = [];
     const options = getOptions(input);
     const octokit = new myoctokit_1.MyOctokit(input);
     const iterator = await octokit.paginate(options.url, options);
-    res = iterator;
+    const res = iterator;
     return res;
 }
 function getOptions(input) {
@@ -258,7 +257,7 @@ async function getSecretScanningAlertsForScope(input) {
         if (error instanceof Error) {
             core.debug(`Error with fatching alerts from the API.: ${error}`);
             core.setFailed('Error: There was an error fetching the alerts from the API. Please check the logs.');
-            throw new Error(error.message);
+            throw new Error(error.message, { cause: error });
         }
     }
     return res;
@@ -453,7 +452,7 @@ const inputs = async () => {
         if (error instanceof Error) {
             core.debug(`Error in inputs.ts: ${error}`);
             core.setFailed('Error: There was an error getting the inputs. Please check the logs.');
-            throw new Error(error.message);
+            throw new Error(error.message, { cause: error });
         }
     }
     throw new Error('Unexpected error occurred in inputs.ts');
