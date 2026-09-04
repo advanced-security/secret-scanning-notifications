@@ -56,7 +56,7 @@ export const inputs = async (): Promise<inputsReturned> => {
       core.setFailed(
         'Error: There was an error getting the inputs. Please check the logs.'
       )
-      throw new Error(error.message)
+      throw new Error(error.message, {cause: error})
     }
   }
   throw new Error('Unexpected error occurred in inputs.ts')

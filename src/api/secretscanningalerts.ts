@@ -3,11 +3,10 @@ import {SecretScanningAlert, inputsReturned} from '../types/common/main'
 import {MyOctokit} from './myoctokit'
 
 export async function fetchSecretScanningAlerts(input: inputsReturned) {
-  let res: SecretScanningAlert[] = []
   const options = getOptions(input)
   const octokit = new MyOctokit(input)
   const iterator = await octokit.paginate(options.url, options)
-  res = iterator as SecretScanningAlert[]
+  const res = iterator as SecretScanningAlert[]
 
   return res
 }
