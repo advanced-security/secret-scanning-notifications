@@ -1,5 +1,4 @@
 import * as core from '@actions/core'
-import {SummaryTableRow} from '@actions/core/lib/summary'
 import {SecretScanningAlert} from '../types/common/main'
 
 export function addToSummary(title: string, alerts: SecretScanningAlert[]) {
@@ -18,7 +17,7 @@ export function addToSummary(title: string, alerts: SecretScanningAlert[]) {
     .addTable([
       headers.map(header => ({data: header, header: true})),
       ...rows
-    ] as SummaryTableRow[])
+    ] as Parameters<typeof core.summary.addTable>[0])
     .addBreak()
 }
 
