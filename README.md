@@ -4,6 +4,7 @@ This GitHub Action retrieves secret scanning alerts from GitHub and filters them
 
 You can use the ouput to create a GitHub issue or send a notification to Email, Slack, Teams, etc.
 
+
 ## How does it work?
 
 The code is realitvely simple. The flow is defined in `src/main.ts` and is as follows:
