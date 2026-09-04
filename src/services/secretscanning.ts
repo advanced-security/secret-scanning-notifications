@@ -39,7 +39,6 @@ export async function filterAlerts(
   const resolvedAlertsResponse = alerts.filter(alert => {
     if (alert.resolved_at != null && alert.state === 'resolved') {
       const resolved = new Date(alert.resolved_at)
-      alert.state === 'resolved'
       return resolved > minimumDate && resolved < new Date()
     }
   })

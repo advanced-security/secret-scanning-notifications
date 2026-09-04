@@ -7,7 +7,8 @@
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
-    "typeRoots": ["./types", "node_modules/@types"]
+    "typeRoots": ["./types", "node_modules/@types"],
+    "types": ["jest", "node"]
   },
   "include": ["src/**/*.ts"], // Add the missing file to the include array
   "exclude": ["dist", "node_modules", "**/*.test.ts"]
