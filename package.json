@@ -48,6 +48,14 @@
     "@vercel/ncc": "^0.45.0",
     "dotenv": "^17.4.2"
   },
+  "overrides": {
+    "@actions/github": {
+      "undici": "6.24.0"
+    },
+    "@actions/http-client": {
+      "undici": "6.24.0"
+    }
+  },
   "devDependencies": {
     "@octokit/rest": "^22.0.1",
     "@types/jest": "^30.0.0",
