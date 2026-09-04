@@ -16,7 +16,7 @@ export async function getSecretScanningAlertsForScope(
       core.setFailed(
         'Error: There was an error fetching the alerts from the API. Please check the logs.'
       )
-      throw new Error(error.message)
+      throw new Error(error.message, {cause: error})
     }
   }
   return res
