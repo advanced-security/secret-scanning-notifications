@@ -7,14 +7,8 @@ class Octokit {
         listAlertsForRepo: jest.fn()
       }
     }
-  }
-
-  paginate() {
-    return Promise.resolve([])
-  }
-
-  request() {
-    return Promise.resolve({})
+    this.paginate = jest.fn(() => Promise.resolve([]))
+    this.request = jest.fn(() => Promise.resolve({}))
   }
 }
 
