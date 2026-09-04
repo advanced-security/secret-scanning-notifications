@@ -28,7 +28,7 @@ describe('utils', () => {
     })
 
     it('should throw an error if the environment variable is not set', () => {
-      expect(() => getRequiredEnvParam('TEST_VAR')).toThrowError(
+      expect(() => getRequiredEnvParam('TEST_VAR')).toThrow(
         'TEST_VAR environment variable must be set'
       )
     })
@@ -72,7 +72,7 @@ describe('utils', () => {
       ;(fs.writeFile as unknown as jest.Mock).mockImplementationOnce(
         (file, data, cb) => cb(error)
       )
-      expect(() => writeToFile(fileName, data)).toThrowError(error)
+      expect(() => writeToFile(fileName, data)).toThrow(error)
     })
   })
 })

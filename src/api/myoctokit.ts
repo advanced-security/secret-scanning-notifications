@@ -1,13 +1,27 @@
 import {Octokit} from '@octokit/action'
 import {inputsReturned} from '../types/common/main'
 
+interface ThrottleRequestOptions {
+  method: string
+  url: string
+  request: {retryCount: number}
+}
+
+interface ThrottleOctokit {
+  log: {warn: (message: string) => void}
+}
+
 export class MyOctokit extends Octokit {
   constructor(input: inputsReturned) {
     super({
       baseUrl: input.apiURL,
       auth: input.api_token,
       throttle: {
-        onRateLimit: (retryAfter: any, options: any, octokit: any) => {
+        onRateLimit: (
+          retryAfter: number,
+          options: ThrottleRequestOptions,
+          octokit: ThrottleOctokit
+        ) => {
           octokit.log.warn(
             `Request quota exhausted for request ${options.method} ${options.url}`
           )
@@ -16,7 +30,11 @@ export class MyOctokit extends Octokit {
             return true
           }
         },
-        onSecondaryRateLimit: (retryAfter: any, options: any, octokit: any) => {
+        onSecondaryRateLimit: (
+          retryAfter: number,
+          options: ThrottleRequestOptions,
+          octokit: ThrottleOctokit
+        ) => {
           octokit.log.warn(
             `Secondary rate limit for request ${options.method} ${options.url}`
           )
