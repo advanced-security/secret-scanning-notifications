@@ -10,9 +10,9 @@ module.exports = {
   debug: jest.fn(),
   error: jest.fn(),
   getInput: jest.fn((name, options = {}) => {
-    const value =
-      process.env[`INPUT_${name.replace(/ /g, '_').toUpperCase()}`]?.trim() ||
-      ''
+    const rawValue =
+      process.env[`INPUT_${name.replace(/ /g, '_').toUpperCase()}`] || ''
+    const value = options.trimWhitespace === false ? rawValue : rawValue.trim()
     if (options.required && !value) {
       throw new Error(`Input required and not supplied: ${name}`)
     }

@@ -1,6 +1,12 @@
 class Octokit {
   constructor() {
-    this.rest = {}
+    this.rest = {
+      secretScanning: {
+        listAlertsForEnterprise: jest.fn(),
+        listAlertsForOrg: jest.fn(),
+        listAlertsForRepo: jest.fn()
+      }
+    }
   }
 
   paginate() {
