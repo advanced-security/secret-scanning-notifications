@@ -62,8 +62,5 @@
   },
   "engines": {
     "node": "19"
-  },
-  "overrides": {
-    "undici": "6.28.1"
   }
 }
