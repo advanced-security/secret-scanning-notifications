@@ -2,13 +2,15 @@ import * as core from '@actions/core'
 import {SecretScanningAlert} from '../types/common/main'
 
 export function addToSummary(title: string, alerts: SecretScanningAlert[]) {
-  const headers = ['Alert Number', 'Secret State', 'Secret Type', 'HTML URL']
+  const headers = ['Alert Number', 'Secret State', 'Secret Type', 'HTML URL', 'Repo Owner', 'Repo Name', 'Org Name', 'Org Owner']
   // Define the table rows
   const rows = alerts.map(alert => [
     alert.number.toString(),
     alert.state,
     alert.secret_type,
-    alert.html_url
+    alert.html_url,
+    alert.login,
+    alert.name
   ])
 
   // Add the table to the Action summary
